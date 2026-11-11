@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  --color-lotus-50: #fdf2f7;
+  --color-lotus-100: #fce7f0;
+  --color-lotus-200: #fbcfe1;
+  --color-lotus-300: #f8a8c6;
+  --color-lotus-400: #f273a1;
+  --color-lotus-500: #e8477f;
+  --color-lotus-600: #d42a63;
+  --color-lotus-700: #b21d4f;
+  --color-lotus-800: #931b44;
+  --color-lotus-900: #7a1b3d;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", "PingFang TC",
+    "Microsoft JhengHei", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", "Cascadia Mono", Menlo, Consolas, monospace;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+  body {
+    @apply bg-slate-100 text-slate-800 antialiased;
+  }
+  ::selection {
+    @apply bg-lotus-200 text-lotus-900;
+  }
+  dialog::backdrop {
+    background: rgb(15 23 42 / 0.45);
+  }
+}
+
+/* range inputs in the lotus colour */
+input[type="range"] {
+  accent-color: var(--color-lotus-600);
+}

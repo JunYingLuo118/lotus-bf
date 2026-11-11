@@ -1,0 +1,14 @@
+# Render Blueprint: New + -> Blueprint -> pick this repository.
+# One free web service. The build installs the Python packages and turns data/*.parquet into lotus.sqlite;
+# the start command rebuilds it only if it is missing, then starts gunicorn. The frontend is the committed dist/.
+services:
+  - type: web
+    name: lotus-bf
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt && python app.py build-db
+    startCommand: python app.py build-db --if-missing && gunicorn app:app --bind 0.0.0.0:$PORT --workers 1 --threads 4 --timeout 120
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
